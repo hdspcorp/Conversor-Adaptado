@@ -6,41 +6,49 @@
   <title>Conversor</title>
   <style>
    :root{
-  --bg:#0a0f17;        /* fundo mais sóbrio */
-  --fg:#e5e7eb;        /* texto principal */
-  --muted:#9aa4b2;     /* texto secundário */
-  --acc:#2dd4bf;       /* acento teal elegante */
-  --card:#0f172a;      /* cards mais escuros (slate-900) */
-  --border:#1f2937;    /* borda discreta */
+  /* Padrão corporativo: grafite + verde suave */
+  --bg:#0b1016;        /* fundo principal (menos azulado) */
+  --fg:#d8dee6;        /* texto principal (menos branco) */
+  --muted:#98a3b0;     /* texto secundário mais discreto */
+  --acc:#94A3B8;       /* slate-400 (cinza-azulado desaturado) */
+  --card:#0e141b;      /* cartões/espaços internos */
+  --border:#1c2733;    /* bordas discretas */
 }
 header .note{
-  margin-left: 400px; font-size: 16px; color: var(--muted);
-  vertical-align: middle; opacity:.95
+  display:block;              /* responsivo */
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  opacity:.9
 }
     * { box-sizing: border-box; }
     body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background:var(--bg); color:var(--fg); }
-    header { padding:20px 24px; border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0)); }
+    header { padding:20px 24px; border-bottom:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0)); position:relative; }
     h1 { margin:0; font-size:22px; }
     main { max-width:1100px; margin:0 auto; padding:24px; }
     .grid { display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
     .col-6 { grid-column: span 6; }
     .col-12 { grid-column: span 12; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,.25); }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:0 6px 20px rgba(0,0,0,.22); }
     .card h2 { margin:0 0 12px; font-size:18px; }
     label { display:block; font-size:13px; color:var(--muted); margin-bottom:6px; }
-    input[type="number"], select, input[type="text"], textarea { width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#0f1730; color:var(--fg); }
-    .btn { cursor:pointer; border:none; border-radius:12px; padding:10px 14px; background:var(--acc); color:#021127; font-weight:700; }
-    .btn.ghost { background:#1f2a52; color:var(--fg); }
+    input[type="number"], select, input[type="text"], textarea { width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#121824; color:var(--fg); }
+    .btn { cursor:pointer; border:none; border-radius:12px; padding:10px 14px; background:var(--acc); color:#0b1016; font-weight:700; transition: filter .12s ease, transform .12s ease; }
+    .btn:hover { filter: brightness(1.04); transform: translateY(-0.5px); }
+    .btn:active { filter: brightness(0.98); transform: translateY(0); }
+    .btn.ghost { background:#1a2330; color:var(--fg); }
+    .btn.ghost:hover { filter: brightness(1.06); transform: translateY(-0.5px); }
+    .btn.ghost:active { filter: brightness(0.98); transform: translateY(0); }
     .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-    .list { max-height:220px; overflow:auto; border:1px solid var(--border); border-radius:12px; padding:10px; background:#0f1730; font-size:12px; }
+    .list { max-height:220px; overflow:auto; border:1px solid var(--border); border-radius:12px; padding:10px; background:#121824; font-size:12px; }
     .stats { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; margin-top:10px; }
-    .stat { background:#0f1730; border:1px solid var(--border); border-radius:12px; padding:10px; font-size:13px; color:var(--muted); }
+    .stat { background:#121824; border:1px solid var(--border); border-radius:12px; padding:10px; font-size:13px; color:var(--muted); }
     .stat strong { display:block; font-size:16px; color:var(--fg); }
-    .bar { height:10px; background:#0f1730; border:1px solid var(--border); border-radius:999px; overflow:hidden; }
-    .bar > div { height:100%; width:0%; background:linear-gradient(90deg, #6aa6ff, #9de1ff); }
-    pre { white-space: pre-wrap; background:#0f1730; border:1px solid var(--border); border-radius:12px; padding:12px; font-size:12px; }
-    .downloads a { display:inline-block; margin:6px 6px 0 0; padding:8px 10px; background:#1e2747; border:1px solid var(--border); border-radius:10px; color:var(--fg); text-decoration:none; font-size:13px; }
-    .pill { font-size:11px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; background:#0f1730; color:var(--muted); }
+    .bar { height:10px; background:#121824; border:1px solid rgba(255,255,255,.05); border-radius:999px; overflow:hidden; }
+    .bar > div { height:100%; width:0%; background:linear-gradient(90deg, #94A3B8, #CBD5E1); }
+    pre { white-space: pre-wrap; background:#121824; border:1px solid var(--border); border-radius:12px; padding:12px; font-size:12px; }
+    .downloads a { display:inline-block; margin:6px 6px 0 0; padding:8px 10px; background:#1b2430; border:1px solid var(--border); border-radius:8px; color:var(--fg); text-decoration:none; font-size:13px; box-shadow: 0 4px 10px rgba(0,0,0,.18); }
+    .pill { font-size:11px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; background:#121824; color:var(--muted); }
     small { color:var(--muted); }
 
    /* Segmented control (modo de saída) — destaque premium */
@@ -48,7 +56,7 @@ header .note{
 .seg {
   display:inline-flex; align-items:center; cursor:pointer; user-select:none;
   padding:10px 14px; border-radius:14px;
-  background:#0f1730; border:1px solid var(--border);
+  background:#121824; border:1px solid var(--border);
   box-shadow: 0 6px 18px rgba(0,0,0,.25);
   transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
 }
@@ -58,17 +66,17 @@ header .note{
 
 .seg input:checked + span{
   color:#0b1220;
-  background: linear-gradient(135deg,#67e8f9 0%, #34d399 100%);
+  background: linear-gradient(135deg, #CBD5E1 0%, #94A3B8 100%); /* slate claro → slate médio */
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
-
 .seg:has(input:checked){
-  border-color: #2dd4bf;
-  box-shadow: 0 8px 26px rgba(45,212,191,.22), inset 0 1px 0 rgba(255,255,255,.08);
+  border-color: #94A3B8;
+  box-shadow: 0 8px 26px rgba(148,163,184,.22), inset 0 1px 0 rgba(255,255,255,.08);
 }
 
     .muted { color:var(--muted); font-size:12px; }
     .dim { opacity:.6; pointer-events:none; filter:saturate(.7); }
+
 	/* ——— App Switcher: botão + menu dropdown ——— */
 .app-switcher {
   position: absolute;
@@ -115,11 +123,112 @@ header .note{
   border-color: rgba(255,255,255,.08);
 }
 
-/* Se esse app tiver “Modo Foco” com botão fixo no canto direito, dá espaço */
-body.focus-mode .app-switcher { right: 160px; }
+/* === Ajuda flutuante (FAB) canto inferior direito === */
+.help-fab{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 30000;
+}
 
-/* Header compat: se não for position:relative, fazemos aqui */
-header { position: relative; }
+.help-hint{
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--acc);
+  color: #0b1016;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.help-hint:focus{ outline: 2px solid rgba(255,255,255,.25); outline-offset: 3px; }
+
+/* Pop-up compacto, abre para CIMA */
+.help-bubble{
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  left: auto;
+
+  /* largura confortável e limites de viewport */
+  width: min(560px, 94vw);
+  min-width: 360px;
+  max-height: min(76vh, 620px);
+  overflow: auto;
+
+  background: var(--card);
+  /* texto neutro, chamativo mas suave (opacidade) */
+  color: #d8dee6CC;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  display: none;
+  z-index: 1;
+
+  /* >>> chave para tirar o negrito herdado do .help-hint <<< */
+  font-weight: 400;
+
+  /* leitura */
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Tipografia do conteúdo interno (compacta e hierárquica) */
+/* Título e subtítulo em destaque (cor “cheia” no título) */
+.help-bubble .hb-title{
+  font-weight: 700;         /* negrito só aqui */
+  font-size: 13px;
+  letter-spacing: .2px;
+  margin: 0 0 8px 0;
+  color: var(--fg);
+}
+.help-bubble .hb-section{
+  margin: 10px 0 12px 0;
+}
+.help-bubble .hb-section .hb-sub{
+  font-weight: 600;         /* semi-negrito só no subtítulo */
+  margin-bottom: 4px;
+  color: #d8dee6E6;         /* levemente mais forte que o corpo */
+}
+
+/* Corpo do texto: sem negrito */
+.help-bubble p{ margin: 4px 0 6px 0; }
+.help-bubble ul{ margin: 6px 0 6px 16px; padding: 0; }
+.help-bubble li{ margin-bottom: 4px; }
+.help-bubble .hb-flow{
+  margin-top: 10px;
+  font-weight: 400;         /* sem negrito no rodapé */
+}
+
+/* Remove negrito de qualquer <strong>/<b> no corpo das seções */
+.help-bubble .hb-section strong,
+.help-bubble .hb-section b{
+  font-weight: 400 !important;
+}
+
+/* Exibir em hover/foco */
+.help-hint:hover .help-bubble,
+.help-hint:focus .help-bubble,
+.help-hint:focus-within .help-bubble{
+  display: block;
+}
+
+/* Mobile: posicionamento confortável */
+@media (max-width: 520px){
+  .help-fab{ right: 12px; bottom: 12px; }
+  .help-bubble{
+    right: -6px;
+    max-width: calc(100vw - 24px);
+  }
+}
   </style>
 
   <!-- PDF e DOCX -->
@@ -157,29 +266,33 @@ header { position: relative; }
       <section class="card col-6">
        <h2>Configuração</h2>
 
-<!-- 1) Modo de saída -->
+<!-- 1) Modo de saída — “Gerar PACKS” como principal e default -->
 <label class="muted"></label>
 <div class="seg-wrap" style="margin-bottom:8px">
-  <label class="seg"><input type="radio" name="outmode" id="modeIndividual" checked><span>Converter para TXT (1:1)</span></label>
-  <label class="seg"><input type="radio" name="outmode" id="modePacks"><span>Gerar PACKS</span></label>
+  <label class="seg"><input type="radio" name="outmode" id="modePacks" checked><span>Gerar PACKS</span></label>
+  <label class="seg"><input type="radio" name="outmode" id="modeIndividual"><span>Converter para TXT (1:1)</span></label>
 </div>
 <small class="muted"></small>
 
 <!-- 2) Opções gerais -->
 <div class="row" style="margin-top:12px">
-  <label><input id="stripHtml" type="checkbox" /> Remover tags HTML de arquivos .html</label>
+  <!-- <label><input id="stripHtml" type="checkbox" /> Remover tags HTML de arquivos .html</label> -->
   <label><input id="preserveOrder" type="checkbox" checked /> Preservar ordem por nome</label>
-  <label><input id="optimizeMd" type="checkbox" /> Otimizar para IA (Markdown + metadados)</label>
+  <!-- <label><input id="optimizeMd" type="checkbox" /> Otimizar para IA (Markdown + metadados)</label> -->
 </div>
 
 <!-- 3) Opções para PACKS -->
 <div style="margin-top:12px">
   <label class="muted"></label>
   <div class="row">
-    <div style="flex:1; min-width:220px">
+    <div style="flex:1; min-width:200px">
       <label for="packs">Número de packs</label>
       <input id="packs" type="number" min="1" max="40" value="1" list="packsList" />
       <datalist id="packsList"></datalist>
+    </div>
+    <div style="flex:1; min-width:200px">
+      <label for="startIndex">Iniciar numeração em</label>
+      <input id="startIndex" type="number" min="1" value="1" />
     </div>
     <div style="flex:1; min-width:180px">
       <label for="ext">Extensão de saída</label>
@@ -194,9 +307,9 @@ header { position: relative; }
     <label for="sepPreset">Separador entre documentos</label>
     <div class="row">
       <select id="sepPreset" style="flex:1; min-width:220px">
-        <option value="blank2" selected>## FIM DO DOCUMENTO ##</option>
+        <option value="blank2">2 linhas em branco</option>
         <option value="dash">Linha horizontal (---)</option>
-        <option value="hash">2 linhas em branco (padrão)</option>
+        <option value="hash" selected>## FIM DO DOCUMENTO ##</option>
         <option value="none">Nenhum separador</option>
       </select>
       <input id="sepCustom" type="text" placeholder="Personalizado (se preencher, substitui o selecionado)" style="flex:2; min-width:260px" />
@@ -211,21 +324,23 @@ header { position: relative; }
   <button id="btnReset" class="btn ghost">Limpar</button>
 </div>
 <div style="margin-top:12px">
-  <div class="bar"><div id="progress"></div></div>
+  <div class="bar"><div id="progress"></"></div></div>
   <div id="status" class="pill" style="margin-top:6px">Aguardando seleção…</div>
 </div>
       </section>
 	  
-	        <!-- ARQUIVOS -->
+      <!-- ARQUIVOS -->
       <section class="card col-6">
-        <h2>Arquivos</h2>
+                <h2>Arquivos</h2>
         <div class="row">
           <button id="btnPickFiles" class="btn">Selecionar arquivos</button>
           <button id="btnPickFolder" class="btn ghost">Selecionar pasta</button>
+          <button id="btnROSILANE" class="btn">EXPORTAR ROSILANE</button>
           <span class="pill">Suporta: .txt .md .csv .json .log .html .htm .pdf .docx</span>
         </div>
-        <input id="fileInputFiles" type="file" multiple style="display:none" accept=".txt,.md,.csv,.json,.log,.html,.htm,.pdf,.docx,.doc" />
-        <input id="fileInputDir" type="file" multiple style="display:none" webkitdirectory directory accept=".txt,.md,.csv,.json,.log,.html,.htm,.pdf,.docx,.doc" />
+        <input id="fileInputFiles" type="file" multiple style="display:none" accept=".txt,md,csv,json,log,html,htm,pdf,docx,doc" />
+        <input id="fileInputDir" type="file" multiple style="display:none" webkitdirectory directory accept=".txt,md,csv,json,log,html,htm,pdf,docx,doc" />
+        <input id="ROSILANEInput" type="file" style="display:none" accept=".json" />
         <div id="fileList" class="list" style="margin-top:12px"></div>
         <div class="stats">
           <div class="stat"><span>Total de arquivos</span><strong id="statFiles">0</strong></div>
@@ -250,8 +365,57 @@ header { position: relative; }
     </div>
   </main>
 
+  <!-- Ajuda flutuante (canto inferior direito) -->
+  <div class="help-fab">
+    <span class="help-hint" tabindex="0" aria-label="Ajuda: passo a passo" role="button">?
+      <div class="help-bubble" role="dialog" aria-modal="false">
+        <div class="hb-title">🧠 Passo a passo da Curadoria</div>
+
+        <div class="hb-section">
+          <div class="hb-sub">1. Conversor — Preparar os Arquivos</div>
+          <p>Use este programa para converter documentos da base da Kiara (como DOCX, PDF, RTF, etc.) para o formato .TXT.<br>
+          Isso permite padronizar os conteúdos e facilitar o envio para o Agente de Curadoria.</p>
+          <p><strong>💡 Recomendações:</strong></p>
+          <ul>
+            <li>Converta apenas os documentos realmente úteis para o treinamento ou avaliação.</li>
+            <li>Tente agrupar informações em menos arquivos, evitando centenas de arquivos pequenos.</li>
+            <li>Após a conversão, os arquivos .TXT estarão prontos para subir na Base de Dados do Agente de Curadoria.</li>
+          </ul>
+        </div>
+
+        <div class="hb-section">
+          <div class="hb-sub">2. Transmissor — Enviar as Interações para Avaliação</div>
+          <p>Neste programa você irá transmitir as interações (perguntas e respostas da Kiara) que serão avaliadas.</p>
+          <p><strong>O que você precisa informar:</strong></p>
+          <ul>
+            <li>ID do Bot de Curadoria (obrigatório)</li>
+            <li>Chave de API (<strong>⚠️ NUNCA</strong> compartilhe essa chave com terceiros ou exponha em lugares públicos)</li>
+          </ul>
+          <p><strong>Como funciona:</strong></p>
+          <p>Após preencher os dados e importar o JSON com as interações do dia, clique em <em>ENVIAR</em>.<br>
+          O Agente de Curadoria receberá os dados e dará início automático à avaliação de cada resposta da Kiara.</p>
+          <p><strong>📅 Dica:</strong> idealmente, transmita as interações do mesmo dia em que será feita a curadoria.</p>
+        </div>
+
+        <div class="hb-section">
+          <div class="hb-sub">3. Workspace — Visualizar as Avaliações</div>
+          <p>Depois que o Agente de Curadoria processar os dados, ele irá gerar um arquivo .JSON com as classificações de cada resposta da Kiara.</p>
+          <p><strong>O que você pode fazer no Workspace:</strong></p>
+          <ul>
+            <li>Importar os arquivos de retorno (.JSON).</li>
+            <li>Visualizar todas as avaliações feitas.</li>
+            <li>Filtrar por classificação: ✅ Correta · ❌ Incorreta · ⚠️ Falta de Documentação.</li>
+          </ul>
+          <p>🔎 Com os filtros, você consegue revisar rapidamente onde a IA foi bem e onde precisa de ajustes na base.</p>
+        </div>
+
+        <div class="hb-flow">✅ Fluxo ideal de uso — ➡️ Conversor → Transmissor → Workspace</div>
+      </div>
+    </span>
+  </div>
+
   <script>
-  const els = {
+    const els = {
   btnPickFiles: document.getElementById('btnPickFiles'),
   btnPickFolder: document.getElementById('btnPickFolder'),
   fileInputFiles: document.getElementById('fileInputFiles'),
@@ -262,12 +426,13 @@ header { position: relative; }
   statChars: document.getElementById('statChars'),
   statTokens: document.getElementById('statTokens'),
   packs: document.getElementById('packs'),
+  startIndex: document.getElementById('startIndex'),
   ext: document.getElementById('ext'),
-  stripHtml: document.getElementById('stripHtml'),
+  /* stripHtml: document.getElementById('stripHtml'), */   // comentado, mantido
   preserveOrder: document.getElementById('preserveOrder'),
   sepPreset: document.getElementById('sepPreset'),
   sepCustom: document.getElementById('sepCustom'),
-  optimizeMd: document.getElementById('optimizeMd'),
+  /* optimizeMd: document.getElementById('optimizeMd'), */ // comentado, mantido
   btnProcess: document.getElementById('btnProcess'),
   btnReset: document.getElementById('btnReset'),
   progress: document.getElementById('progress'),
@@ -277,6 +442,9 @@ header { position: relative; }
   btnDownloadAll: document.getElementById('btnDownloadAll'),
   modePacks: document.getElementById('modePacks'),
   modeIndividual: document.getElementById('modeIndividual'),
+  /* —— novos —— */
+  btnROSILANE: document.getElementById('btnROSILANE'),
+  ROSILANEInput: document.getElementById('ROSILANEInput'),
 };
 
   (function fillPacksDatalist(){
@@ -324,16 +492,15 @@ header { position: relative; }
     return text.replace(/[ \t]+\n/g, '\n').replace(/[ \t]+$/,'');
   }
 
-  // ===== Utilitários para o modo Otimizar para IA =====
+  // ===== Utilitários opcionais (mantidos no código, mas **não usados** porque a opção foi comentada) =====
   function slugify(s){
     return (s || '')
       .normalize('NFKD')
-      .replace(/[\u0300-\u036f]/g,'')    // remove diacríticos
-      .replace(/[^a-zA-Z0-9]+/g,'-')     // não-alfanumérico -> hífen
-      .replace(/^-+|-+$/g,'')            // bordas
+      .replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-zA-Z0-9]+/g,'-')
+      .replace(/^-+|-+$/g,'')
       .toLowerCase();
   }
-
   function detectTagsFromName(name){
     const tags = [];
     const n = (name || '').toLowerCase();
@@ -343,7 +510,6 @@ header { position: relative; }
     if(n.includes('keevocenter') || n.includes('keevo center')) tags.push('KeevoCenter');
     return tags.length ? tags : ['documento'];
   }
-
   function addFrontMatter({docId, title, source, tags}){
     const created = new Date().toISOString().slice(0,10);
     const yaml =
@@ -358,7 +524,6 @@ tags: [${tags.map(t=>`"${t}"`).join(', ')}]
 `;
     return yaml;
   }
-
   function promoteSectionHeadings(raw){
     const SECTION_HINTS = [
       'introdução','quando utilizar','quando usar','como utilizar','como usar',
@@ -369,25 +534,18 @@ tags: [${tags.map(t=>`"${t}"`).join(', ')}]
     const lines = raw.split('\n');
     return lines.map((line) => {
       const trimmed = line.trim();
-
       if (!trimmed || /^#{1,6}\s/.test(trimmed) || /^(-|\*|\•|\d+\.)\s/.test(trimmed) || trimmed.length > 80) {
         return line;
       }
-
       const lower = trimmed.toLowerCase();
-      if (SECTION_HINTS.includes(lower)) {
-        return (line.startsWith('## ') ? line : `## ${trimmed}`);
-      }
-
+      if (SECTION_HINTS.includes(lower)) return (line.startsWith('## ') ? line : `## ${trimmed}`);
       if (/:$/.test(trimmed) && trimmed.length <= 60) {
         const noColon = trimmed.replace(/:$/,'');
         return (line.startsWith('## ') ? line : `## ${noColon}`);
       }
-
       return line;
     }).join('\n');
   }
-
   function normalizeBullets(raw){
     return raw
       .replace(/^\s*[•\*]\s+/gm, '- ')
@@ -489,11 +647,11 @@ tags: [${tags.map(t=>`"${t}"`).join(', ')}]
     const raw = await file.text();
 
     if(/\.(html?|HTML?)$/.test(file.name)){
-      if(els.stripHtml.checked){
+      /* if(els.stripHtml.checked){  // comentado
         return htmlToTextPreserveBreaks(raw);
-      } else {
+      } else { */
         return raw;
-      }
+      /* } */
     }
     return raw; // TXT/MD/CSV/JSON/LOG
   }
@@ -599,23 +757,74 @@ tags: [${tags.map(t=>`"${t}"`).join(', ')}]
     els.packs.disabled    = individual;
     els.sepPreset.disabled= individual;
     els.sepCustom.disabled= individual;
+    els.startIndex.disabled = individual;
     // extensão: no modo individual, forçamos .txt
     els.ext.disabled      = individual;
     if (individual) { els.ext.value = 'txt'; }
     // cosmetics
-    [els.packs, els.sepPreset, els.sepCustom, els.ext].forEach(el=>{
-      el.closest('div')?.classList.toggle('dim', individual && (el===els.packs || el===els.sepPreset || el===els.sepCustom));
+    [els.packs, els.sepPreset, els.sepCustom, els.ext, els.startIndex].forEach(el=>{
+      el.closest('div')?.classList.toggle('dim', individual && (el===els.packs || el===els.sepPreset || el===els.sepCustom || el===els.startIndex));
     });
   }
-  els.modePacks.addEventListener('change', syncModeUI);
+    els.modePacks.addEventListener('change', syncModeUI);
   els.modeIndividual.addEventListener('change', syncModeUI);
-  syncModeUI();
+  syncModeUI(); // default já entra em PACKS
+
+  // ========= EXPORTAR ROSILANE =========
+  (function(){
+    const { btnROSILANE, ROSILANEInput } = els;
+    if(!btnROSILANE || !ROSILANEInput) return;
+
+    btnROSILANE.addEventListener('click', ()=> ROSILANEInput.click());
+
+    ROSILANEInput.addEventListener('change', async (ev)=>{
+      try{
+        const file = ev.target.files && ev.target.files[0];
+        if(!file){ return; }
+
+        const text = await file.text();
+        const data = JSON.parse(text);
+
+                const rows = (data.conversations || []).map(c => {
+          // user_id: manter somente o que está ANTES do ponto
+          const rawU = (c && typeof c.user_id !== 'undefined' && c.user_id !== null) ? c.user_id : '';
+          const u = String(rawU).split('.')[0] || '';
+
+          // last_message_at: separar em DATA (YYYY-MM-DD) e HORARIO (HH:MM:SS)
+          const rawL = (c && typeof c.last_message_at !== 'undefined' && c.last_message_at !== null) ? String(c.last_message_at) : '';
+          let d = '', h = '';
+          const m = rawL.match(/^(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/); // robusto: ignora frações/offset
+          if (m) { d = m[1]; h = m[2]; }
+
+          return [u, d, h];
+        });
+
+        const header = 'CLIENTES,DATA,HORARIO\n';
+        const esc = s => String(s).replace(/"/g,'""');
+        const body = rows.map(([u,d,h]) => `"${esc(u)}","${esc(d)}","${esc(h)}"`).join('\n');
+        const csv  = header + body;
+
+        const outName = (file.name.replace(/\.json$/i,'') || 'ROSILANE') + '_export.csv';
+
+        // Reutiliza a UI padrão (Downloads + “Baixar todos”)
+        createDownloadLink(outName, csv);
+        els.btnDownloadAll.disabled = generatedPacksData.length === 0;
+
+        // limpa o input para permitir reimportar o mesmo arquivo se necessário
+        ev.target.value = '';
+      }catch(err){
+        console.error(err);
+        alert('Falha ao exportar CSV: ' + (err.message || err));
+      }
+    });
+  })();
 
   // ========= PROCESSAR =========
   els.btnProcess.addEventListener('click', async () => {
     if(!selectedFiles.length){ alert('Selecione arquivos ou uma pasta.'); return; }
     const individual = els.modeIndividual.checked;
     const k = Math.max(1, Math.min(40, parseInt(els.packs.value,10) || 1));
+    const startAt = Math.max(1, parseInt(els.startIndex.value,10) || 1);
 
     els.status.textContent = 'Lendo arquivos…';
     els.progress.style.width = '3%';
@@ -637,22 +846,18 @@ tags: [${tags.map(t=>`"${t}"`).join(', ')}]
         const title = base;
         const h1 = `# ${title}`;
 
-        if (els.optimizeMd.checked) {
-          // Normalizações leves e promoção de seções
+        /* if (els.optimizeMd?.checked) { // comentado
           let md = content;
           md = normalizeBullets(md);
           md = promoteSectionHeadings(md);
-
-          // Front-matter
           const docId = slugify(base);
           const tags = detectTagsFromName(base);
           const yaml = addFrontMatter({docId, title, source:file.name, tags});
-
           content = `${yaml}${h1}\n\n${md}`;
-        } else {
-          // Comportamento antigo: somente H1 no topo
+        } else { */
+          // Comportamento padrão: somente H1 no topo
           content = `${h1}\n\n${content}`;
-        }
+        /* } */
 
         const len = content.length; 
         charTotal += len;
@@ -660,11 +865,11 @@ tags: [${tags.map(t=>`"${t}"`).join(', ')}]
       }catch(e){ errors.push(`${file.name}: ${e.message}`); }
       processed++;
       if (processed % 10 === 0 || processed === selectedFiles.length) {
-  const pctRead = Math.round((processed / selectedFiles.length) * 70); // 0–70%
-  els.progress.style.width = pctRead + '%';
-  els.status.textContent = `Lendo arquivos… (${processed}/${selectedFiles.length})`;
-  await new Promise(r=>setTimeout(r, 0));
-}
+        const pctRead = Math.round((processed / selectedFiles.length) * 70); // 0–70%
+        els.progress.style.width = pctRead + '%';
+        els.status.textContent = `Lendo arquivos… (${processed}/${selectedFiles.length})`;
+        await new Promise(r=>setTimeout(r, 0));
+      }
     }
 
     els.statChars.textContent = String(charTotal);
@@ -674,29 +879,28 @@ tags: [${tags.map(t=>`"${t}"`).join(', ')}]
       docs.sort((a,b)=> cmpByVersionedName(a.name, b.name));
     }
 
-    // ========== NOVO MODO: INDIVIDUAL (.txt para cada arquivo) ==========
+    // ========== MODO INDIVIDUAL (.txt para cada arquivo) ==========
     if (individual) {
       els.status.textContent = 'Gerando arquivos individuais…';
       els.progress.style.width = '85%';
 
       els.downloads.innerHTML = '';
       let firstPreview = '';
-      const ext = 'txt'; // fixo conforme solicitado
+      const ext = 'txt'; // fixo no individual
 
-const baseProgress = 70;
-docs.forEach((d, i) => {
-  const text = d.content;
-  const fname = `${baseName(d.name)}.${ext}`;
-  createDownloadLink(fname, text);
+      const baseProgress = 70;
+      docs.forEach((d, i) => {
+        const text = d.content;
+        const fname = `${baseName(d.name)}.${ext}`;
+        createDownloadLink(fname, text);
 
-  // progresso 70–100% conforme gera cada arquivo
-  const pct = baseProgress + Math.round(((i+1) / docs.length) * 30);
-  els.progress.style.width = pct + '%';
+        const pct = baseProgress + Math.round(((i+1) / docs.length) * 30);
+        els.progress.style.width = pct + '%';
 
-  if (i===0) {
-    firstPreview = text.slice(0, 3000) + (text.length>3000 ? '\n… (cortado)' : '');
-  }
-});
+        if (i===0) {
+          firstPreview = text.slice(0, 3000) + (text.length>3000 ? '\n… (cortado)' : '');
+        }
+      });
 
       els.btnDownloadAll.disabled = generatedPacksData.length === 0;
       els.preview.textContent = firstPreview || '(vazio)';
@@ -711,34 +915,34 @@ docs.forEach((d, i) => {
       return; // encerra aqui no modo individual
     }
 
-    // ========== MODO ORIGINAL: PACKS ==========
+    // ========== MODO PACKS ==========
     els.status.textContent = 'Distribuindo documentos…';
     els.progress.style.width = '70%';
 
     const packs = assignDocsToPacksSequential(docs, k);
 
     els.downloads.innerHTML = '';
-    const forceMd = els.optimizeMd.checked;
+    const forceMd = false; // opção “Otimizar para IA” removida da UI
     const ext = forceMd ? 'md' : els.ext.value;
     const sep = forceMd ? '\n\n---\n\n' : getSeparator();
 
     let firstPreview = '';
 
-const baseProgress = 70;
-packs.forEach((pk, i) => {
-  const header = `<!-- Pack ${String(i+1).padStart(2,'0')} | arquivos: ${pk.docs.length} | chars: ${pk.len} | tokens≈${approxTokens(pk.len)} -->\n\n`;
-  const text = header + pk.docs.map(d=>d.content).join(sep);
-  const fname = `base_de_dados_${String(i+1).padStart(2,'0')}.${ext}`;
-  createDownloadLink(fname, text);
+    const baseProgress = 70;
+    packs.forEach((pk, i) => {
+      const header = `<!-- Pack ${String(i+1).padStart(2,'0')} | arquivos: ${pk.docs.length} | chars: ${pk.len} | tokens≈${approxTokens(pk.len)} -->\n\n`;
+      const text = header + pk.docs.map(d=>d.content).join(sep);
+      const num = String(startAt + i).padStart(2,'0'); // inicia a partir de X
+      const fname = `base_de_dados_${num}.${ext}`;
+      createDownloadLink(fname, text);
 
-  // progresso 70–100% conforme gera cada pack
-  const pct = baseProgress + Math.round(((i+1) / packs.length) * 30);
-  els.progress.style.width = pct + '%';
+      const pct = baseProgress + Math.round(((i+1) / packs.length) * 30);
+      els.progress.style.width = pct + '%';
 
-  if(i===0){
-    firstPreview = text.slice(0, 3000) + (text.length>3000 ? '\n… (cortado)' : '');
-  }
-});
+      if(i===0){
+        firstPreview = text.slice(0, 3000) + (text.length>3000 ? '\n… (cortado)' : '');
+      }
+    });
 
     els.btnDownloadAll.disabled = generatedPacksData.length === 0;
     els.preview.textContent = firstPreview || '(vazio)';
@@ -773,6 +977,19 @@ packs.forEach((pk, i) => {
     if (e.key === 'Escape') toggle(false);
   });
 })();
+</script>
+
+<script>
+  (function(){
+    const hint = document.querySelector('.help-hint');
+    if(!hint) return;
+    document.addEventListener('click', (e)=>{
+      if(!hint.contains(e.target)){
+        // remove o foco do ícone, ocultando o pop-up (por CSS)
+        hint.blur?.();
+      }
+    });
+  })();
 </script>
 </body>
 </html>
